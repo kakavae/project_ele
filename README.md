@@ -1,24 +1,8 @@
-# project_ele
+### 服务器要求：
 
-## Project setup
-```
-npm install
-```
+1. 启动发送三级联动数据的服务器，读取服务器数据发送图片url的服务器也是同一个
+2. 启动托管图片静态资源的服务器
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+### 数据库要求：
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+1. 打开mysql的my_db_02数据库，table里面的表存了图片的url
