@@ -1,28 +1,32 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <MyShortcut></MyShortcut>
+    <MyHeader v-if="true"></MyHeader>
+    <router-view></router-view>
+    <!-- 登录和注册组件没有MyFooter组件 -->
+    <!-- 这里的$route代表谁的路由信息？谁被显示出来就代表谁的路由信息-->
+    <MyFooter v-show="$route.meta.show"></MyFooter>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import MyShortcut from '@/components/Shootcut/index.vue'
+import MyHeader from '@/components/Header/index.vue'
+import MyFooter from '@/components/Footer/index.vue'
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    MyShortcut,
+    MyHeader,
+    MyFooter
+  },
+  mounted() {
+    // 给vuex发dispatch，获取三级联动的数据
+    this.$store.dispatch('home/getCategory')
+    // 给vuex发送dispatch，让actions发送Ajax请求获取floor的渲染信息，这个请求不适合在floor发，因为floor要挂载两次，适合在app组件发
+    this.$store.dispatch('home/getFloorMsg')
   }
 }
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<style scoped></style>
